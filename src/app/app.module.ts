@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { JsonpModule } from '@angular/http';
+import { JsonpModule, HttpModule } from '@angular/http';
 
 
 import { AppComponent } from './app.component';
@@ -15,7 +15,8 @@ import { TempUnitPipe } from './weather-widget/pipe/temp-unit.pipe';
   ],
   imports: [
     BrowserModule,
-    JsonpModule
+    JsonpModule,
+    HttpModule
   ],
   providers: [],
   bootstrap: [AppComponent]
