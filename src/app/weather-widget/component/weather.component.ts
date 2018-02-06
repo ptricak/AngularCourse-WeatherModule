@@ -16,8 +16,9 @@ export class WeatherComponent implements OnInit {
     currentSpeedUnit = "kph";
     currentTempUnit = "celsius";
     currentLocation = "";
+    icons = new Skycons({ "color": "#FFF" });
 
-    constructor(private weather: WeatherService) {}
+    constructor(private weather: WeatherService) { }
 
     ngOnInit() {
         this.getCurrentLocation();
@@ -47,8 +48,31 @@ export class WeatherComponent implements OnInit {
 
     getLocationName() {
         this.weather.getLocationName(this.pos.coords.latitude, this.pos.coords.longitude)
-        .subscribe(location => {
-            this.currentLocation = location["results"][2]["formatted_address"];
-        });
+            .subscribe(location => {
+                this.currentLocation = location["results"][2]["formatted_address"];
+            });
+    }
+
+    toggleUnits() {
+        this.toggleTempUnits();
+        this.toggleSpeedUnits();
+    }
+
+    toggleTempUnits() {
+        if (this.currentTempUnit == "fahrenheit") {
+            this.currentTempUnit = "celsius";
+        }
+        else {
+            this.currentTempUnit = "fahrenheit";
+        }
+    }
+
+    toggleSpeedUnits() {
+        if (this.currentSpeedUnit == "kph") {
+            this.currentSpeedUnit = "mph";
+        }
+        else {
+            this.currentSpeedUnit = "kph";
+        }
     }
 }

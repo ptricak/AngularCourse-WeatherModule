@@ -3,7 +3,7 @@
         <div class="col-8">
             <p>{{ currentLocation }}</p>
         </div>
-        <div class="col-4 text-right">
+        <div class="col-4 text-right" (click)="toggleTempUnits()">
             <h1>{{ weatherData.temp | tempUnit: currentTempUnit | number: '.0-0' }}&deg;</h1>
         </div>
     </div>
@@ -12,7 +12,7 @@
         <p>{{ weatherData.summary }}</p>
     </div>
     <div class="card-footer row">
-        <div class="col-5">
+        <div class="col-5" (click)="toggleSpeedUnits()">
             <p>Wind</p>
             <p>{{ weatherData.wind | speedUnit: currentSpeedUnit }}</p>
         </div>
