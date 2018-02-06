@@ -1,20 +1,24 @@
-<div class="card">
-    <div class="card-header row">
-        <div class="col-8">
-            <p>{{ currentLocation }}</p>
+<div class="card" [ngStyle]="setStyles()">
+    <div class="card-header row" [class.invisible]="!dataReceived">
+        <div class="col-8" id="location-wrapper">
+            <p><i id="location-icon" class="fa fa-map-marker" aria-hidden="true"></i>{{currentLocation }}</p>
         </div>
         <div class="col-4 text-right" (click)="toggleTempUnits()">
             <h1>{{ weatherData.temp | tempUnit: currentTempUnit | number: '.0-0' }}&deg;</h1>
         </div>
     </div>
     <div class="card-block">
-        <h1>0</h1>
+        <div id="indicator" [hidden]="dataReceived">
+            <i class="fa fa-circle-o-notch fa-spin fa-4x fa-fw"></i>
+            <span class="sr-only">Loading...</span>
+        </div>
+        <canvas id="icon" [hidden]="!dataReceived"></canvas>
         <p>{{ weatherData.summary }}</p>
     </div>
-    <div class="card-footer row">
+    <div class="card-footer row" [class.invisible]="!dataReceived">
         <div class="col-5" (click)="toggleSpeedUnits()">
             <p>Wind</p>
-            <p>{{ weatherData.wind | speedUnit: currentSpeedUnit }}</p>
+            <p class="unit-label">{{ weatherData.wind | speedUnit: currentSpeedUnit }}</p>
         </div>
         <div class="col-5 offset-2">
             <p>Humidity</p>
